@@ -1,4 +1,3 @@
-
 package assignment02;
 public interface Queue<E> 
 {
@@ -9,4 +8,5 @@ public interface Queue<E>
     boolean removeQueue(E e); // remove first occurrence of e if it is in the queue
     // and return true. Return false if e is not in the queue
     boolean isEmpty(); // return true if the queue is empty, otherwise false
+    E peek(); // returns the element at the front of the queue without removing it
 }

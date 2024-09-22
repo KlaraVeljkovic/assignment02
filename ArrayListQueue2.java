@@ -1,12 +1,13 @@
 package assignment02;
+
 import java.util.ArrayList;
-public class ArrayListQueue2<E> extends ArrayList<E> implements Queue<E> 
-{
+
+public class ArrayListQueue2<E> extends ArrayList<E> implements Queue<E> {
 
     // Adds an element to the end of the queue (enqueue operation)
     @Override
     public void enqueue(E e) {
-        this.add(e);  // Use inherited ArrayList's add method
+        this.add(e);  // Add element to the end of the ArrayList
     }
 
     // Removes and returns the element from the front of the queue (dequeue operation)
@@ -16,6 +17,12 @@ public class ArrayListQueue2<E> extends ArrayList<E> implements Queue<E>
             throw new IllegalStateException("Queue is empty");
         }
         return this.remove(0);  // Remove the first element (index 0)
+    }
+
+    // Removes the first occurrence of the specified element from the queue
+    @Override
+    public boolean removeQueue(E e) {
+        return this.remove(e);  // Use ArrayList's remove method
     }
 
     // Returns the element at the front of the queue without removing it
@@ -30,6 +37,6 @@ public class ArrayListQueue2<E> extends ArrayList<E> implements Queue<E>
     // Checks if the queue is empty
     @Override
     public boolean isEmpty() {
-        return super.isEmpty();  // Use inherited ArrayList's isEmpty method
+        return super.isEmpty();  // Use ArrayList's isEmpty method
     }
 }

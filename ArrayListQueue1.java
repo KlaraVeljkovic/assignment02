@@ -1,45 +1,43 @@
 package assignment02;
+
 import java.util.ArrayList;
-public class ArrayListQueue1<E> implements Queue<E> 
-{
- 
+
+public class ArrayListQueue1<E> implements Queue<E> {
+    private ArrayList<E> list = new ArrayList<>();  // Use ArrayList internally
+
     // Adds an element to the end of the queue (enqueue operation)
     @Override
     public void enqueue(E e) {
-        this.add(e);  // Use inherited ArrayList's add method
+        list.add(e);  // Add element to the end of the list
     }
 
     // Removes and returns the element from the front of the queue (dequeue operation)
     @Override
     public E dequeue() {
-        if (this.isEmpty()) {
+        if (list.isEmpty()) {
             throw new IllegalStateException("Queue is empty");
         }
-        return this.remove(0);  // Remove the first element (index 0)
+        return list.remove(0);  // Remove the first element (index 0)
+    }
+
+    // Removes the first occurrence of the specified element from the queue
+    @Override
+    public boolean removeQueue(E e) {
+        return list.remove(e);  // Use ArrayList's remove method
     }
 
     // Returns the element at the front of the queue without removing it
     @Override
     public E peek() {
-        if (this.isEmpty()) {
+        if (list.isEmpty()) {
             throw new IllegalStateException("Queue is empty");
         }
-        return this.get(0);  // Get the first element (index 0)
+        return list.get(0);  // Get the first element (index 0)
     }
 
     // Checks if the queue is empty
     @Override
     public boolean isEmpty() {
-        return super.isEmpty();  // Use inherited ArrayList's isEmpty method
-    }
-
-    // Returns the index of the first occurrence of the specified element, or -1 if not present
-    public int indexOf(E e) {
-        return super.indexOf(e);  // Use inherited ArrayList's indexOf method
-    }
-
-    // Returns the current size of the queue (inherited from ArrayList)
-    public int size() {
-        return super.size();  // Inherited ArrayList's size method
+        return list.isEmpty();  // Check if the list is empty
     }
 }
