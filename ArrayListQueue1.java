@@ -1,37 +1,45 @@
 package assignment02;
 import java.util.ArrayList;
 
-public class ArrayListQueue1<E> implements Queue<E> {
+public class ArrayListQueue1<E> implements Queue<E> 
+{
     private ArrayList<E> arrayList = new ArrayList<>();
-
     @Override
-    public void enqueue(E e) {
-        if (e == null) {
+    public void enqueue(E e) 
+    {
+        if (e == null) 
+        {
             throw new IllegalArgumentException("Cannot enqueue null element.");
         }
-        arrayList.add(e); // Use add method to add at the end
+        // adds at the end
+        arrayList.add(e);
     }
-
     @Override
-    public E dequeue() {
-        if (arrayList.isEmpty()) {
+    public E dequeue() 
+    {
+        if (arrayList.isEmpty()) 
+        {
             throw new IllegalStateException("Cannot dequeue from an empty queue.");
         }
-        return arrayList.remove(0); // Remove and return the first element
+        // removes and returns first element
+        return arrayList.remove(0); 
     }
-
     @Override
-    public boolean removeQueue(E e) {
-        int index = arrayList.indexOf(e); // Find the first occurrence of e
-        if (index != -1) {
-            arrayList.remove(index); // Remove the element if found
+    public boolean removeQueue(E e) 
+    {
+        // first occurrence of e
+        int index = arrayList.indexOf(e); 
+        if (index != -1) 
+        {
+             // removes element if found
+            arrayList.remove(index);
             return true;
         }
         return false;
     }
-
     @Override
-    public boolean isEmpty() {
-        return arrayList.isEmpty(); // Check if the queue is empty
+    public boolean isEmpty() 
+    {
+        return arrayList.isEmpty(); 
     }
 }
