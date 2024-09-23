@@ -3,69 +3,93 @@ package assignment02;
 public class QueueTester {
 
     public static void main(String[] args) {
-        // Test with ArrayListQueue1
-        System.out.println("Testing ArrayListQueue1...");
-        testQueue(new ArrayListQueue1<>());
-
-        // Test with ArrayListQueue2
-        System.out.println("\nTesting ArrayListQueue2...");
-        testQueue(new ArrayListQueue2<>());
+        testArrayListQueue1();
+        testArrayListQueue2();
     }
 
-    public static void testQueue(Queue<Integer> queue) {
+    // Testing ArrayListQueue1 (Object Adapter)
+    public static void testArrayListQueue1() {
+        System.out.println("Testing ArrayListQueue1 (Object Adapter):");
+        Queue<Integer> queue1 = new ArrayListQueue1<>();
+
         // Test for empty queue
-        System.out.println("Testing empty queue...");
+        System.out.println("Is empty: " + queue1.isEmpty()); // Expected: true
 
+        // Try to dequeue from empty queue
         try {
-            System.out.println("Attempting to peek on empty queue...");
-            queue.peek();  // Should throw an exception
+            queue1.dequeue();
         } catch (Exception e) {
-            System.out.println("Exception occurred: " + e.getMessage());
+            System.out.println("Exception occurred during dequeue from empty queue: " + e.getMessage());
         }
 
+        // Try to enqueue a null value
         try {
-            System.out.println("Attempting to dequeue on empty queue...");
-            queue.dequeue();  // Should throw an exception
+            queue1.enqueue(null);
         } catch (Exception e) {
-            System.out.println("Exception occurred: " + e.getMessage());
+            System.out.println("Exception occurred during enqueue of null value: " + e.getMessage());
         }
 
-        System.out.println("Queue is empty: " + queue.isEmpty());  // Should return true
+        // Enqueue elements
+        queue1.enqueue(10);
+        queue1.enqueue(20);
+        queue1.enqueue(30);
+        System.out.println("Is empty after enqueuing: " + queue1.isEmpty()); // Expected: false
 
-        // Test enqueue
-        System.out.println("Adding elements to the queue...");
-        queue.enqueue(1);
-        queue.enqueue(2);
-        queue.enqueue(3);
+        // Dequeue an element
+        System.out.println("Dequeued: " + queue1.dequeue()); // Expected: 10
 
-        System.out.println("Queue is empty: " + queue.isEmpty());  // Should return false
-        System.out.println("Front element after enqueue: " + queue.peek());  // Should return 1
+        // Remove a specific element
+        System.out.println("Remove 20: " + queue1.removeQueue(20)); // Expected: true
+        System.out.println("Remove 40 (non-existent): " + queue1.removeQueue(40)); // Expected: false
 
-        // Test dequeue
-        System.out.println("Dequeueing element...");
-        Integer dequeuedElement = queue.dequeue();
-        System.out.println("Dequeued element: " + dequeuedElement);  // Should return 1
-        System.out.println("Front element after dequeue: " + queue.peek());  // Should return 2
+        // Dequeue remaining elements
+        System.out.println("Dequeued: " + queue1.dequeue()); // Expected: 30
 
-        // Dequeue all elements
-        System.out.println("Dequeueing all elements...");
-        queue.dequeue();
-        queue.dequeue();
+        // Test for empty queue again
+        System.out.println("Is empty after all dequeues: " + queue1.isEmpty()); // Expected: true
 
+        System.out.println();
+    }
+
+    // Testing ArrayListQueue2 (Class Adapter)
+    public static void testArrayListQueue2() {
+        System.out.println("Testing ArrayListQueue2 (Class Adapter):");
+        Queue<Integer> queue2 = new ArrayListQueue2<>();
+
+        // Test for empty queue
+        System.out.println("Is empty: " + queue2.isEmpty()); // Expected: true
+
+        // Try to dequeue from empty queue
         try {
-            System.out.println("Attempting to peek on empty queue after dequeueing all...");
-            queue.peek();  // Should throw an exception
+            queue2.dequeue();
         } catch (Exception e) {
-            System.out.println("Exception occurred: " + e.getMessage());
+            System.out.println("Exception occurred during dequeue from empty queue: " + e.getMessage());
         }
 
+        // Try to enqueue a null value
         try {
-            System.out.println("Attempting to dequeue on empty queue after dequeueing all...");
-            queue.dequeue();  // Should throw an exception
+            queue2.enqueue(null);
         } catch (Exception e) {
-            System.out.println("Exception occurred: " + e.getMessage());
+            System.out.println("Exception occurred during enqueue of null value: " + e.getMessage());
         }
 
-        System.out.println("Queue is empty: " + queue.isEmpty());  // Should return true
+        // Enqueue elements
+        queue2.enqueue(10);
+        queue2.enqueue(20);
+        queue2.enqueue(30);
+        System.out.println("Is empty after enqueuing: " + queue2.isEmpty()); // Expected: false
+
+        // Dequeue an element
+        System.out.println("Dequeued: " + queue2.dequeue()); // Expected: 10
+
+        // Remove a specific element
+        System.out.println("Remove 20: " + queue2.removeQueue(20)); // Expected: true
+        System.out.println("Remove 40 (non-existent): " + queue2.removeQueue(40)); // Expected: false
+
+        // Dequeue remaining elements
+        System.out.println("Dequeued: " + queue2.dequeue()); // Expected: 30
+
+        // Test for empty queue again
+        System.out.println("Is empty after all dequeues: " + queue2.isEmpty()); // Expected: true
     }
 }

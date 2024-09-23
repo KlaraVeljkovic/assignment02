@@ -1,42 +1,36 @@
 package assignment02;
-
 import java.util.ArrayList;
 
 public class ArrayListQueue2<E> extends ArrayList<E> implements Queue<E> {
 
-    // Adds an element to the end of the queue (enqueue operation)
     @Override
     public void enqueue(E e) {
-        this.add(e);  // Add element to the end of the ArrayList
+        if (e == null) {
+            throw new IllegalArgumentException("Cannot enqueue null element.");
+        }
+        add(e); // Use add method of ArrayList to add at the end
     }
 
-    // Removes and returns the element from the front of the queue (dequeue operation)
     @Override
     public E dequeue() {
-        if (this.isEmpty()) {
-            throw new IllegalStateException("Queue is empty");
+        if (isEmpty()) {
+            throw new IllegalStateException("Cannot dequeue from an empty queue.");
         }
-        return this.remove(0);  // Remove the first element (index 0)
+        return remove(0); // Remove and return the first element
     }
 
-    // Removes the first occurrence of the specified element from the queue
     @Override
     public boolean removeQueue(E e) {
-        return this.remove(e);  // Use ArrayList's remove method
-    }
-
-    // Returns the element at the front of the queue without removing it
-    @Override
-    public E peek() {
-        if (this.isEmpty()) {
-            throw new IllegalStateException("Queue is empty");
+        int index = indexOf(e); // Find the first occurrence of e
+        if (index != -1) {
+            remove(index); // Remove the element if found
+            return true;
         }
-        return this.get(0);  // Get the first element (index 0)
+        return false;
     }
 
-    // Checks if the queue is empty
     @Override
     public boolean isEmpty() {
-        return super.isEmpty();  // Use ArrayList's isEmpty method
+        return super.isEmpty(); // Use ArrayList's isEmpty() method
     }
 }
